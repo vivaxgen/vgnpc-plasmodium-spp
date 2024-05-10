@@ -24,9 +24,9 @@ read_filters: --remove_trans --remove_unmapped --remove_secondary --remove_suppl
 reads_trimmer_wf: trimmer_null.smk
 reads_mapper_wf: mapper_bwa-mem2.smk
 
-refseq_file: refs/PvP01_v1/PvP01_v1-GRCh38.p14.fasta
-knownsites_file: refs/PvP01_v1/known-variants.bed.gz
-knownvariants_dir: refs/PvP01_v1/known-variants
+refseq_file: configs/refs/PvP01_v1/PvP01_v1-GRCh38.p14.fasta
+knownsites_file: configs/refs/PvP01_v1/known-variants.bed.gz
+knownvariants_dir: configs/refs/PvP01_v1/known-variants
 
 regions:
   - PvP01_01_v1
