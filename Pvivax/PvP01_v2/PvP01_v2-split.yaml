@@ -1,0 +1,53 @@
+
+optical_dedup: False
+instrument: generic
+platform: generic
+libprep: generic
+
+min_read_qual: 15
+read_length: 100
+
+# for WGS data, deduplication is necessary (default is True)
+deduplicate: True
+
+# set below to True for new samples (for the purpose of submitting to SRA database)
+keep_paired_bam: False
+
+# set below to True for structural variant (SV) analysis such as CNV
+keep_final_bam: True
+
+# filter to apply for deduplicated BAM
+# read_filters: --remove_FR --remove_RF --remove_FF --remove_RR --remove_trans --remove_unmapped --remove_secondary --remove_supplementary
+# for below, we keep FR, RF, FF and RR orientation for future SV analysis
+read_filters: --remove_trans --remove_unmapped --remove_secondary --remove_supplementary
+
+reads_trimmer_wf: trimmer_null.smk
+reads_mapper_wf: mapper_bwa-mem2.smk
+
+haplotypecaller_flags: --kmer-size 10 --kmer-size 25 --kmer-size 40 --dont-use-soft-clipped-bases --min-assembly-region-size 100 --do-not-run-physical-phasing --base-quality-score-threshold 12 -mbq 5 -DF MappingQualityReadFilter --heterozygosity 0.0029 --indel-heterozygosity 0.0017
+
+refseq_file: configs/refs/PvP01_v2/PvP01_v2-GRCh38.p14.fasta
+knownsites_file: configs/refs/PvP01_v2/known-variants.bed.gz
+knownvariants_dir: configs/refs/PvP01_v2/known-variants
+
+ggvcf_flags: -stand-call-conf 10 -new-qual
+
+regions:
+  PvP01_01_v2: [510834, 1021664]
+  PvP01_02_v2: [478166, 956327]
+  PvP01_03_v2: [448354, 896704]
+  PvP01_04_v2: [506014, 1012024]
+  PvP01_05_v2: [508273, 1016545, 1524814]
+  PvP01_06_v2: [521398, 1042791]
+  PvP01_07_v2: [550739, 1101477, 1652210]
+  PvP01_08_v2: [587098, 1174195, 1761288]
+  PvP01_09_v2: [559268, 1118535, 1677802, 2237066]
+  PvP01_10_v2: [516283, 1032565, 1548844]
+  PvP01_11_v2: [532807, 1065613, 1598419, 2131221]
+  PvP01_12_v2: [530462, 1060923, 1591384, 2121845, 2652306, 3182763]
+  PvP01_13_v2: [523391, 1046781, 1570171, 2093556]
+  PvP01_14_v2: [525569, 1051137, 1576705, 2102273, 2627841, 3153402]
+  PvP01_API_v2: [29582]
+  PvP01_MIT_v2: [5989]
+
+
