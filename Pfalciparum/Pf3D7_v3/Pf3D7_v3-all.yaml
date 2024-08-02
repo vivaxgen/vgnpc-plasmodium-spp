@@ -24,9 +24,11 @@ read_filters: --remove_trans --remove_unmapped --remove_secondary --remove_suppl
 reads_trimmer_wf: trimmer_null.smk
 reads_mapper_wf: mapper_bwa-mem2.smk
 
-refseq_file: refs/Pf3D7_v3/Pf3D7_v3-GRCh38.p14.fasta
-knownsites_file: refs/Pf3D7_v3/known-variants.bed.gz
-knownvariants_dir: refs/Pf3D7_v3/known-variants
+haplotypecaller_flags: --kmer-size 10 --kmer-size 25 --pileup-detection --min-assembly-region-size 100 --do-not-run-physical-phasing --base-quality-score-threshold 12 -mbq 5 -DF MappingQualityReadFilter --heterozygosity 0.0029 --indel-heterozygosity 0.0017
+
+refseq_file: configs/refs/Pf3D7_v3/Pf3D7_v3-GRCh38.p14.fasta
+knownsites_file: configs/refs/Pf3D7_v3/known-variants.bed.gz
+knownvariants_dir: configs/refs/Pf3D7_v3/known-variants
 
 regions:
   - Pf3D7_01_v3
