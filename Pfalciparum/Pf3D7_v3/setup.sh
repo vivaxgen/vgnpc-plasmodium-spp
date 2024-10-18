@@ -61,6 +61,12 @@ REFDIR=configs/refs/${LABEL}
 	for fn in known-variants/*.bed; do echo "Processing ${fn}"; bgzip -f ${fn}; tabix ${fn}.gz; done
 )
 
+(
+	echo "Downloading snpEff config file"
+	cd ${REFDIR}
+	curl -O https://raw.githubusercontent.com/vivaxgen/vgnpc-plasmodium-spp/main/Pfalciparum/${LABEL}/snpEff.config
+)
+
 echo "Linking config.yaml..."
 ln -srf configs/${LABEL}-all.yaml configs/config.yaml
 
