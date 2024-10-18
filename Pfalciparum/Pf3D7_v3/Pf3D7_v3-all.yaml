@@ -24,11 +24,21 @@ read_filters: --remove_trans --remove_unmapped --remove_secondary --remove_suppl
 reads_trimmer_wf: trimmer_null.smk
 reads_mapper_wf: mapper_bwa-mem2.smk
 
-haplotypecaller_flags: --kmer-size 10 --kmer-size 25 --pileup-detection --min-assembly-region-size 100 --do-not-run-physical-phasing --base-quality-score-threshold 12 -mbq 5 -DF MappingQualityReadFilter --heterozygosity 0.0029 --indel-heterozygosity 0.0017
+haplotypecaller_flags: --kmer-size 10 --kmer-size 25 --pileup-detection --min-assembly-region-size 100 --base-quality-score-threshold 12 -mbq 5 -DF MappingQualityReadFilter --heterozygosity 0.0029 --indel-heterozygosity 0.0017
 
 refseq_file: configs/refs/Pf3D7_v3/Pf3D7_v3-GRCh38.p14.fasta
 knownsites_file: configs/refs/Pf3D7_v3/known-variants.bed.gz
 knownvariants_dir: configs/refs/Pf3D7_v3/known-variants
+
+gff_file: configs/refs/Pf3D7_v3/Pf3D7_v3.gff
+snpEff_config_file: configs/refs/Pf3D7_v3/snpEff.config
+snpEff_data_dir: configs/refs/Pf3D7_v3/snpEff_data/
+snpEff_db: Pf3D7_v3
+ 
+ggvcf_flags: -stand-call-conf 10 -new-qual
+ 
+# uncomment below to use GATK DRAGEN algorithm
+# variant_caller_wf: ssf_varcall_gatk_drag.smk
 
 regions:
   - Pf3D7_01_v3
@@ -46,6 +56,6 @@ regions:
   - Pf3D7_13_v3
   - Pf3D7_14_v3
   - Pf3D7_API_v3
-  - Pf_M76611
+  - Pf3D7_MIT_v3
 
 
