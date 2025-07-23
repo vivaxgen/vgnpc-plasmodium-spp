@@ -26,17 +26,17 @@ reads_mapper_wf: mapper_bwa-mem2.smk
 
 haplotypecaller_flags: --kmer-size 10 --kmer-size 25 --pileup-detection --min-assembly-region-size 100 --base-quality-score-threshold 12 -mbq 5 -DF MappingQualityReadFilter --heterozygosity 0.0029 --indel-heterozygosity 0.0017
 
-refseq_file: configs/refs/PvP01_v2/PvP01_v2-GRCh38.p14.fasta
-knownsites_file: configs/refs/PvP01_v2/known-variants.bed.gz
-knownvariants_dir: configs/refs/PvP01_v2/known-variants
+refseq_file: configs/refs/PmUG01_v1/PmUG01_v1-GRCh38.p14.fasta
+knownsites_file: configs/refs/PmUG01_v1/known-variants.bed.gz
+knownvariants_dir: configs/refs/PmUG01_v1/known-variants
 variant_caller_wf: ssf_varcall_gatk_drag.smk
 
-strtable_file: configs/refs/PvP01_v2/PvP01_v2.str_table.tsv.zip
+strtable_file: configs/refs/PmUG01_v1/PmUG01_v1.str_table.zip
 
-gff_file: configs/refs/PvP01_v2/PvP01_v2.gff
-snpEff_config_file: configs/refs/PvP01_v2/snpEff.config
-snpEff_data_dir: configs/refs/PvP01_v2/snpEff_data/
-snpEff_db: PvP01_v2
+gff_file: configs/refs/PmUG01_v1/PmUG01_v1.gff
+snpEff_config_file: configs/refs/PmUG01_v1/snpEff.config
+snpEff_data_dir: configs/refs/PmUG01_v1/snpEff_data/
+snpEff_db: PmUG01_v1
 
 ggvcf_flags: -stand-call-conf 10 -new-qual
 
@@ -44,23 +44,22 @@ ggvcf_flags: -stand-call-conf 10 -new-qual
 # variant_caller_wf: ssf_varcall_gatk_drag.smk
 
 regions:
-  - PvP01_01_v2
-  - PvP01_02_v2
-  - PvP01_03_v2
-  - PvP01_04_v2
-  - PvP01_05_v2
-  - PvP01_06_v2
-  - PvP01_07_v2
-  - PvP01_08_v2
-  - PvP01_09_v2
-  - PvP01_10_v2
-  - PvP01_11_v2
-  - PvP01_12_v2
-  - PvP01_13_v2
-  - PvP01_14_v2
-  - PvP01_API_v2
-  - PvP01_MIT_v2
-
+  - PmUG01_01_v1
+  - PmUG01_02_v1
+  - PmUG01_03_v1
+  - PmUG01_04_v1
+  - PmUG01_05_v1
+  - PmUG01_06_v1
+  - PmUG01_07_v1
+  - PmUG01_08_v1
+  - PmUG01_09_v1
+  - PmUG01_10_v1
+  - PmUG01_11_v1
+  - PmUG01_12_v1
+  - PmUG01_13_v1
+  - PmUG01_14_v1
+  - PmUG01_API_v1
+  - PmUG01_MIT_v1
 
 contaminant_regions:
 - NC_000001.11
