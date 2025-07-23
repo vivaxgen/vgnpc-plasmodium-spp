@@ -1,0 +1,90 @@
+
+optical_dedup: False
+instrument: generic
+platform: generic
+libprep: generic
+
+min_read_qual: 15
+read_length: 100
+
+# for WGS data, deduplication is necessary (default is True)
+deduplicate: True
+
+# set below to True for new samples (for the purpose of submitting to SRA database)
+keep_paired_bam: False
+
+# set below to True for structural variant (SV) analysis such as CNV
+keep_final_bam: True
+
+# filter to apply for deduplicated BAM
+# read_filters: --remove_FR --remove_RF --remove_FF --remove_RR --remove_trans --remove_unmapped --remove_secondary --remove_supplementary
+# for below, we keep FR, RF, FF and RR orientation for future SV analysis
+read_filters: --remove_trans --remove_unmapped --remove_secondary --remove_supplementary
+
+reads_trimmer_wf: trimmer_null.smk
+reads_mapper_wf: mapper_bwa-mem2.smk
+
+haplotypecaller_flags: --kmer-size 10 --kmer-size 25 --pileup-detection --min-assembly-region-size 100 --base-quality-score-threshold 12 -mbq 5 -DF MappingQualityReadFilter --heterozygosity 0.0029 --indel-heterozygosity 0.0017
+
+refseq_file: configs/refs/PvP01_v2/PvP01_v2-GRCh38.p14.fasta
+knownsites_file: configs/refs/PvP01_v2/known-variants.bed.gz
+knownvariants_dir: configs/refs/PvP01_v2/known-variants
+variant_caller_wf: ssf_varcall_gatk_drag.smk
+
+strtable_file: configs/refs/PvP01_v2/PvP01_v2.str_table.tsv.zip
+
+gff_file: configs/refs/PvP01_v2/PvP01_v2.gff
+snpEff_config_file: configs/refs/PvP01_v2/snpEff.config
+snpEff_data_dir: configs/refs/PvP01_v2/snpEff_data/
+snpEff_db: PvP01_v2
+
+ggvcf_flags: -stand-call-conf 10 -new-qual
+
+# uncomment below to use GATK DRAGEN algorithm
+# variant_caller_wf: ssf_varcall_gatk_drag.smk
+
+regions:
+  - PvP01_01_v2
+  - PvP01_02_v2
+  - PvP01_03_v2
+  - PvP01_04_v2
+  - PvP01_05_v2
+  - PvP01_06_v2
+  - PvP01_07_v2
+  - PvP01_08_v2
+  - PvP01_09_v2
+  - PvP01_10_v2
+  - PvP01_11_v2
+  - PvP01_12_v2
+  - PvP01_13_v2
+  - PvP01_14_v2
+  - PvP01_API_v2
+  - PvP01_MIT_v2
+
+
+contaminant_regions:
+- NC_000001.11
+- NC_000002.12
+- NC_000003.12
+- NC_000004.12
+- NC_000005.10
+- NC_000006.12
+- NC_000007.14
+- NC_000008.11
+- NC_000009.12
+- NC_000010.11
+- NC_000011.10
+- NC_000012.12
+- NC_000013.11
+- NC_000014.9
+- NC_000015.10
+- NC_000016.10
+- NC_000017.11
+- NC_000018.10
+- NC_000019.10
+- NC_000020.11
+- NC_000021.9
+- NC_000022.11
+- NC_000023.11
+- NC_000024.10
+- NC_012920.1
