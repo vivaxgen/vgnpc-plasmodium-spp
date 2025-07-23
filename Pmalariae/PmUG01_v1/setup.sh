@@ -51,7 +51,7 @@ REFDIR=configs/refs/${LABEL}
 	cat refs/${LABEL}/contaminants.yaml >> ${LABEL}-all.yaml
 )
 
-(
+#(
 	#echo "Downloading and preparing known variant from Pf7 dataset..."
 	#cd ${REFDIR}
 	#curl -O https://raw.githubusercontent.com/vivaxgen/vgnpc-plasmodium-spp/main/Pmalariae/${LABEL}/known-variants.bed.gz
@@ -59,12 +59,12 @@ REFDIR=configs/refs/${LABEL}
 	#python3 -c "import yaml; [open(f'known-variants/{reg}.bed', 'w') for reg in yaml.safe_load(open('../../${LABEL}-all.yaml'))['regions']]"
 	#zcat known-variants.bed.gz | awk '{print > "known-variants/" $1 ".bed"}'
 	#for fn in known-variants/*.bed; do echo "Processing ${fn}"; bgzip -f ${fn}; tabix ${fn}.gz; done
-)
+#)
 
 (
 	echo "Downloading snpEff config file"
 	cd ${REFDIR}
-	curl -O https://raw.githubusercontent.com/vivaxgen/vgnpc-plasmodium-spp/main/Pmalariae/${LABEL}/snpEff.config
+	#curl -O https://raw.githubusercontent.com/vivaxgen/vgnpc-plasmodium-spp/main/Pmalariae/${LABEL}/snpEff.config
 )
 
 echo "Linking config.yaml..."
