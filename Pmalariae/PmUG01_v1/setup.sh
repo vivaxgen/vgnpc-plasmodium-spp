@@ -64,7 +64,7 @@ REFDIR=configs/refs/${LABEL}
 (
 	echo "Downloading snpEff config file"
 	cd ${REFDIR}
-	#curl -O https://raw.githubusercontent.com/vivaxgen/vgnpc-plasmodium-spp/main/Pmalariae/${LABEL}/snpEff.config
+	curl -O https://raw.githubusercontent.com/vivaxgen/vgnpc-plasmodium-spp/main/Pmalariae/${LABEL}/snpEff.config
 )
 
 echo "Linking config.yaml..."

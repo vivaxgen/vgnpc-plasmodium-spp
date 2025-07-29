@@ -29,7 +29,6 @@ haplotypecaller_flags: --kmer-size 10 --kmer-size 25 --pileup-detection --min-as
 refseq_file: configs/refs/PmUG01_v1/PmUG01_v1-GRCh38.p14.fasta
 knownsites_file: configs/refs/PmUG01_v1/known-variants.bed.gz
 knownvariants_dir: configs/refs/PmUG01_v1/known-variants
-variant_caller_wf: ssf_varcall_gatk_drag.smk
 
 strtable_file: configs/refs/PmUG01_v1/PmUG01_v1.str_table.zip
 
