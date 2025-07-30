@@ -62,9 +62,12 @@ REFDIR=configs/refs/${LABEL}
 #)
 
 (
-	echo "Downloading snpEff config file"
+	echo "Downloading snpEff config file and preparing files for snpEff database"
 	cd ${REFDIR}
 	curl -O https://raw.githubusercontent.com/vivaxgen/vgnpc-plasmodium-spp/main/Pmalariae/${LABEL}/snpEff.config
+	mkdir -p snpEff_data/${LABEL}
+	ln -sr ${LABEL}.gff snpEff_data/${LABEL}/genes.gff
+	ln -sr ${LABEL}.fasta snpEff_data/${LABEL}/sequences.fa
 )
 
 echo "Linking config.yaml..."
