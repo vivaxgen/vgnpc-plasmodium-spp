@@ -76,6 +76,9 @@ ln -srf configs/${LABEL}-all.yaml configs/config.yaml
 echo "Indexing reference sequence"
 ngs-pl initialize --target wgs
 
+echo "Preparing snpEff database"
+ngs-pl initialize --target snpEff_db
+
 echo "Finish setting up environment"
 
 # EOF
