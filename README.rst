@@ -4,7 +4,12 @@ vgnpc-plasmodium-spp
 This repository contains preset configurations and scripts to automatically prepare
 vivaxGEN NGS-Pipeline environment directory for WGS analysis of Plasmodium species.
 
-To setup a base environment directory, use the following steps:
+
+Installation
+------------
+
+To setup a base environment directory and install the preset configuration,
+use the following steps:
 
 #. activate a plain (base) NGS-Pipeline environment::
 
@@ -15,7 +20,7 @@ To setup a base environment directory, use the following steps:
      $ ngs-pl setup-base-directory /data/WGS/Pv/PvP01_v2
 
    .. tip::
-      to easily identify and differentiate between several base enviroment directory,
+      To easily identify and differentiate between several base enviroment directory,
       it is recommended to use the reference genome name as part of the directory
       name
 
@@ -25,11 +30,16 @@ To setup a base environment directory, use the following steps:
      $ exit
      $ /data/WGS/Pv/PvP01_v2/bin/activate
 
-#. run the installation command for the intended settings::
+#. run the installation command for the intended settings, ie. for Plasmodium vivax PvP01_v2
+   (for other genomes, see Configuration Options section)::
 
      $ bash <(curl -L https://raw.githubusercontent.com/vivaxgen/vgnpc-plasmodium-spp/main/Pvivax/PvP01_v2/setup.sh)
 
 Once installation process is completed successfully, the settings is ready to be used.
+
+
+Configuration Options
+---------------------
 
 The following are the installation commands for various reference genomes:
 
@@ -44,3 +54,5 @@ The following are the installation commands for various reference genomes:
 - Plasmodium malariae PmUG01_v1::
 
     $ bash <(curl -L https://raw.githubusercontent.com/vivaxgen/vgnpc-plasmodium-spp/main/Pmalariae/PmUG01_v1/setup.sh)
+
+
