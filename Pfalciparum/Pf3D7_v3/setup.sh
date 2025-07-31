@@ -65,6 +65,9 @@ REFDIR=configs/refs/${LABEL}
 	echo "Downloading snpEff config file"
 	cd ${REFDIR}
 	curl -O https://raw.githubusercontent.com/vivaxgen/vgnpc-plasmodium-spp/main/Pfalciparum/${LABEL}/snpEff.config
+	mkdir -p snpEff_data/${LABEL}
+	ln -sr ${LABEL}.gff snpEff_data/${LABEL}/genes.gff
+	ln -sr ${LABEL}.fasta snpEff_data/${LABEL}/sequences.fa
 )
 
 echo "Linking config.yaml..."
@@ -72,6 +75,9 @@ ln -srf configs/${LABEL}-all.yaml configs/config.yaml
 
 echo "Indexing reference sequence"
 ngs-pl initialize --target wgs
+
+echo "Preparing snpEff database"
+ngs-pl initialize --target snpEff_db
 
 echo "Finish setting up environment"
 
