@@ -30,7 +30,17 @@ refseq_file: configs/refs/PvP01_v2/PvP01_v2-GRCh38.p14.fasta
 knownsites_file: configs/refs/PvP01_v2/known-variants.bed.gz
 knownvariants_dir: configs/refs/PvP01_v2/known-variants
 
+strtable_file: configs/refs/PvP01_v2/PvP01_v2.str_table.zip
+
+gff_file: configs/refs/PvP01_v2/PvP01_v2.gff
+snpEff_config_file: configs/refs/PvP01_v2/snpEff.config
+snpEff_data_dir: configs/refs/PvP01_v2/snpEff_data/
+snpEff_db: PvP01_v2
+
 ggvcf_flags: -stand-call-conf 10 -new-qual
+
+# uncomment below to use GATK DRAGEN algorithm
+variant_caller_wf: ssf_varcall_gatk_drag.smk
 
 regions:
   - PvP01_01_v2
