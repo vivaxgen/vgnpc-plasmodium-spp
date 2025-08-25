@@ -9,7 +9,7 @@ Installation
 ------------
 
 To setup a base environment directory and install the preset configuration,
-use the following steps:
+use the following stepsi (assuming PvP01_v2 reference genome):
 
 #. activate a plain (base) NGS-Pipeline environment::
 
@@ -28,10 +28,10 @@ use the following steps:
    enviroment directory::
 
      $ exit
-     $ /data/WGS/Pv/PvP01_v2/bin/activate
+     $ /data/WGS/Pv/PvP01_v2/activate
 
 #. run the installation command for the intended settings, ie. for Plasmodium vivax PvP01_v2
-   (for other genomes, see Configuration Options section)::
+   (for other genomes, see Configuration Options section below)::
 
      $ bash <(curl -L https://raw.githubusercontent.com/vivaxgen/vgnpc-plasmodium-spp/main/Pvivax/PvP01_v2/setup.sh)
 
