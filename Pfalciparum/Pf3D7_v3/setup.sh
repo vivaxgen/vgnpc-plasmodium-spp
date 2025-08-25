@@ -10,15 +10,20 @@ cd ${NGSENV_BASEDIR}
 
 LABEL=Pf3D7_v3
 REF=PlasmoDB-68_Pfalciparum3D7
-HOSTREF=GCF_000001405.40_GRCh38.p14
+SRCDIR=Pfalciparum/${LABEL}
+PLASMODBURL=https://plasmodb.org/common/downloads/release-68/Pfalciparum3D7
+
+SRC_URL=https://raw.githubusercontent.com/vivaxgen/vgnpc-plasmodium-spp/main/${SRCDIR}
 REFDIR=configs/refs/${LABEL}
+HOSTREF=GCF_000001405.40_GRCh38.p14
+
 (	
 	echo "Downloading ${REF} from PlasmoDB..."
 	mkdir -p ${REFDIR}
 	cd ${REFDIR}
-	curl -z ${REF}_Genome.fasta        -O https://plasmodb.org/common/downloads/release-68/Pfalciparum3D7/fasta/data/${REF}_Genome.fasta
-	curl -z ${REF}_AnnotatedCDSs.fasta -O https://plasmodb.org/common/downloads/release-68/Pfalciparum3D7/fasta/data/${REF}_AnnotatedCDSs.fasta
-	curl -z ${REF}.gff                 -O https://plasmodb.org/common/downloads/release-68/Pfalciparum3D7/gff/data/${REF}.gff
+	curl -z ${REF}_Genome.fasta        -O ${PLASMODBURL}/fasta/data/${REF}_Genome.fasta
+	curl -z ${REF}_AnnotatedCDSs.fasta -O ${PLASMODBURL}/fasta/data/${REF}_AnnotatedCDSs.fasta
+	curl -z ${REF}.gff                 -O ${PLASMODBURL}/gff/data/${REF}.gff
 	ln -sr ${REF}_Genome.fasta ${LABEL}.fasta
 	ln -sr ${REF}.gff ${LABEL}.gff
 	ln -sr ${REF}_AnnotatedCDSs.fasta ${LABEL}_AnnotatedCDSs.fasta
@@ -45,7 +50,7 @@ REFDIR=configs/refs/${LABEL}
 (
 	echo "Downloading config file"
 	cd configs
-	curl -O https://raw.githubusercontent.com/vivaxgen/vgnpc-plasmodium-spp/main/Pfalciparum/${LABEL}/${LABEL}-all.yaml
+	curl -O ${SRC_URL}/${LABEL}-all.yaml
 
 	echo "Appending contaminant regions..."
 	cat refs/${LABEL}/contaminants.yaml >> ${LABEL}-all.yaml
@@ -54,7 +59,7 @@ REFDIR=configs/refs/${LABEL}
 (
 	echo "Downloading and preparing known variant from Pf7 dataset..."
 	cd ${REFDIR}
-	curl -O https://raw.githubusercontent.com/vivaxgen/vgnpc-plasmodium-spp/main/Pfalciparum/${LABEL}/known-variants.bed.gz
+	curl -O ${SRC_URL}/known-variants.bed.gz
 	mkdir known-variants
 	python3 -c "import yaml; [open(f'known-variants/{reg}.bed', 'w') for reg in yaml.safe_load(open('../../${LABEL}-all.yaml'))['regions']]"
 	zcat known-variants.bed.gz | awk '{print > "known-variants/" $1 ".bed"}'
@@ -62,9 +67,9 @@ REFDIR=configs/refs/${LABEL}
 )
 
 (
-	echo "Downloading snpEff config file"
+	echo "Downloading snpEff config file and preparing files for snpEff database"
 	cd ${REFDIR}
-	curl -O https://raw.githubusercontent.com/vivaxgen/vgnpc-plasmodium-spp/main/Pfalciparum/${LABEL}/snpEff.config
+	curl -O ${SRC_URL}/snpEff.config
 	mkdir -p snpEff_data/${LABEL}
 	ln -sr ${LABEL}.gff snpEff_data/${LABEL}/genes.gff
 	ln -sr ${LABEL}.fasta snpEff_data/${LABEL}/sequences.fa
@@ -73,11 +78,11 @@ REFDIR=configs/refs/${LABEL}
 echo "Linking config.yaml..."
 ln -srf configs/${LABEL}-all.yaml configs/config.yaml
 
-echo "Indexing reference sequence"
-ngs-pl initialize --target wgs
-
 echo "Preparing snpEff database"
 ngs-pl initialize --target snpEff_db
+
+echo "Indexing reference sequence"
+ngs-pl initialize --target wgs
 
 echo "Finish setting up environment"
 
