@@ -30,7 +30,7 @@ refseq_file: configs/refs/Pf3D7_v3/Pf3D7_v3-GRCh38.p14.fasta
 knownsites_file: configs/refs/Pf3D7_v3/known-variants.bed.gz
 knownvariants_dir: configs/refs/Pf3D7_v3/known-variants
 
-strtable_file: configs/refs/Pf3D7_v3/Pf3D7_v3.str_tables.zip
+strtable_file: configs/refs/Pf3D7_v3/Pf3D7_v3.str_table.zip
 
 gff_file: configs/refs/Pf3D7_v3/Pf3D7_v3.gff
 snpEff_config_file: configs/refs/Pf3D7_v3/snpEff.config
