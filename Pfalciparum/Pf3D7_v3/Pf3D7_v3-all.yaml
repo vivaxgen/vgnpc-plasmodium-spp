@@ -27,15 +27,16 @@ reads_mapper_wf: mapper_bwa-mem2.smk
 haplotypecaller_flags: --kmer-size 10 --kmer-size 25 --pileup-detection --min-assembly-region-size 100 --base-quality-score-threshold 12 -mbq 5 -DF MappingQualityReadFilter --heterozygosity 0.0029 --indel-heterozygosity 0.0017
 
 refseq_file: configs/refs/Pf3D7_v3/Pf3D7_v3-GRCh38.p14.fasta
-strtable_file: configs/refs/Pf3D7_v3/Pf3D7_v3.str_tables.zip
 knownsites_file: configs/refs/Pf3D7_v3/known-variants.bed.gz
 knownvariants_dir: configs/refs/Pf3D7_v3/known-variants
+
+strtable_file: configs/refs/Pf3D7_v3/Pf3D7_v3.str_tables.zip
 
 gff_file: configs/refs/Pf3D7_v3/Pf3D7_v3.gff
 snpEff_config_file: configs/refs/Pf3D7_v3/snpEff.config
 snpEff_data_dir: configs/refs/Pf3D7_v3/snpEff_data/
 snpEff_db: Pf3D7_v3
- 
+
 ggvcf_flags: -stand-call-conf 10 -new-qual
  
 # uncomment below to use GATK DRAGEN algorithm
